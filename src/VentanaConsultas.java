@@ -45,6 +45,7 @@ public class VentanaConsultas extends JFrame implements ActionListener {
         autenticador.setVisible(true);
     }
     public void actionPerformed(ActionEvent evt){
+
         controlDe.acciones(this,evt);
     }
 }

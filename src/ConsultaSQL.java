@@ -16,12 +16,15 @@ public class ConsultaSQL {
     public ConsultaSQL(Connection conRecibida, String consultaRecibida) {
 
         conexion = conRecibida;
-        consulta = consultaRecibida;
+        System.out.println(conexion);
+        consulta = "Select * from actor;";//consultaRecibida;
         try {
             //Crea una instancia para mandar sentencias al servidor MySQL
-            Statement sentencia=conexion.createStatement();
+            Statement sentencia = conexion.createStatement();
+
             //Ejecuta la consulta y devuelve el ResultSet
-            resultadoConsulta=sentencia.executeQuery(consulta);
+            resultadoConsulta = sentencia.executeQuery(consulta);
+
             //Obtiene los metadatos del ResultSet
             metaDatos=resultadoConsulta.getMetaData();
             error=null;
@@ -30,7 +33,7 @@ public class ConsultaSQL {
             error=e.getMessage();
         }
 
-        }
+    }
 
     public String [][] getDatosDevueltos(){
         if (error==null){
@@ -59,6 +62,7 @@ public class ConsultaSQL {
                 }
             }
             catch (Exception e){
+                error = e.getMessage();
             }
         }
         return datosDevueltos;
@@ -76,7 +80,7 @@ public class ConsultaSQL {
                  }
             }
             catch (SQLException e){
-
+                error = e.getMessage();
             }
         }
         return nombresColumnas;

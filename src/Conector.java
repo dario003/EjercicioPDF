@@ -10,19 +10,18 @@ public class Conector {
     public Conector(String host, String usuario, String pw, String base){
 
         String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "127.0.0.1:3306";
+        //String url = "127.0.0.1:3306";
 
         try{
             Class.forName(driver);
-            conexion = DriverManager.getConnection("jdbc:mysql://"+url+"/"+base, usuario,pw);
+            conexion = DriverManager.getConnection("jdbc:mysql://"+host+"/"+base, usuario,pw);
 
         }
-
-        catch (ClassNotFoundException e){
-            error=e.getMessage();
+        catch (ClassNotFoundException ex){
+            error=ex.getMessage();
         }
         catch (SQLException e){
-            error = e.getMessage();
+            error = e.getSQLState();
         }
     }
 
@@ -35,7 +34,7 @@ public class Conector {
             conexion.close();
         }
         catch (Exception ex){
-
+            error = ex.getMessage();
         }
     }
 

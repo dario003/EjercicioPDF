@@ -35,8 +35,9 @@ public class Controlador {
         javax.swing.JOptionPane.showMessageDialog(null,e);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new VentanaConsultas();
+
     }
 
 }
